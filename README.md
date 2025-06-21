@@ -43,10 +43,10 @@ pnpm create next-app --example https://github.com/vercel/examples/tree/main/stor
 Once that's done, copy the .env.example file in this directory to .env.local (which will be ignored by Git):
 
 ```bash
-cp .env.example .env.local
+cp .env.example .env
 ```
 
-Then open `.env.local` and set the environment variables to match the ones in your Vercel Storage Dashboard.
+Then open `.env` and set the environment variables to match the ones in your Vercel Storage Dashboard.
 
 Next, run Next.js in development mode:
 
