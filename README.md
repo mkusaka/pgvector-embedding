@@ -55,3 +55,57 @@ pnpm dev
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=vercel-examples) ([Documentation](https://nextjs.org/docs/deployment)).
+
+## Local Development with Docker
+
+This project supports local development using Docker Compose to run PostgreSQL with pgvector extension.
+
+### Prerequisites
+
+- Docker and Docker Compose installed
+- pnpm installed
+
+### Setup
+
+1. Start PostgreSQL with pgvector using Docker Compose:
+
+```bash
+docker-compose up -d
+```
+
+This will start PostgreSQL on port 15432 with the pgvector extension enabled.
+
+2. Set up your environment variables in `.env.local`:
+
+```bash
+POSTGRES_URL=postgresql://postgres:postgres@localhost:15432/embeddings
+OPENAI_API_KEY=your-openai-api-key
+OPENAI_ORG_ID=your-openai-org-id
+```
+
+3. Push the database schema:
+
+```bash
+pnpm drizzle-kit push
+```
+
+4. Seed the database with Pokemon data:
+
+```bash
+pnpm db:seed
+```
+
+5. Start the development server:
+
+```bash
+pnpm dev
+```
+
+### Database Management
+
+- **Start database**: `docker-compose up -d`
+- **Stop database**: `docker-compose down`
+- **View logs**: `docker-compose logs -f postgres`
+- **Reset database**: `docker-compose down -v` (this will delete all data)
+
+The application automatically detects whether it's running locally or on Vercel and uses the appropriate database driver.
